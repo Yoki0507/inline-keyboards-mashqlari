@@ -10,7 +10,7 @@ dp=Dispatcher()
 async def start_handler(msg:Message):
     await msg.answer("Assalomu Alaykum botga xush kelibsiz",reply_markup=inline_menu)
 
-@dp.message(Command("Fanlar"))
+@dp.message(Command("fanlar"))
 async def fanlar_handler(msg:Message):
     await msg.answer("Maktab Fanlari Haqida va ",reply_markup=inline_fanlar)
 
@@ -100,7 +100,6 @@ inline_menu=InlineKeyboardMarkup(
     inline_keyboard=[
         [InlineKeyboardButton(text="Inline Tugma",callback_data="inline_tugma")],[InlineKeyboardButton(text="Hech Narsa qilmaydigan tugma",callback_data="tugma")],
         [InlineKeyboardButton(text="Yangiliklar",callback_data="yangilik")],[InlineKeyboardButton(text="Aloqa",callback_data="aloqa")],
-        [InlineKeyboardButton(text="Ha",callback_data="ha")],[InlineKeyboardButton(text="Yo'q",callback_data="yoq")]
     ]
 )  
 
@@ -123,6 +122,16 @@ async def btn(call:CallbackQuery):
 async def btn(call:CallbackQuery):
     await call.message.answer("Biz bilan bog'laning: example@gmail.com")
     await call.answer()
+
+@dp.message(Command("soroq"))
+async def fanlar_handler(msg:Message):
+    await msg.answer("Sizga bot yoqdimi?",reply_markup=inline_soroq)
+
+inline_soroq=InlineKeyboardMarkup(
+    inline_keyboard=[
+        [InlineKeyboardButton(text="Ha",callback_data="ha")],[InlineKeyboardButton(text="Yo'q",callback_data="yoq")]
+    ]
+)  
 
 @dp.callback_query(F.data=='ha')
 async def btn(call:CallbackQuery):
